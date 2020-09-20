@@ -22,13 +22,30 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "ios": {
-      "supportsTablet": true
-    },
     "packagerOpts": {
       "assetExts": [
         "ttf"
       ]
+    },
+    "ios": {
+      "bundleIdentifier": "com.test.test",
+      "supportsTablet": true
+    },
+    "android": {
+      "versionCode": 32,
+      "package": "com.test.test",
+      "config": {
+        "googleSignIn": {
+          "apiKey": "AIzaSSyADCLdzTBaRTkSurzEMtWGr",
+          "certificateHash": "E3C2F31E0D060B49616998"
+        }
+      },
+      "permissions": [
+        "WAKE_LOCK"
+      ]
+    },
+    "androidStatusBar" : {
+      "backgroundColor" : "#3F71D7"
     },
     "description": "Now UI React Native, based on Now UI Design System. Coded by Creative Tim"
   }
