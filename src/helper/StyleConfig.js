@@ -60,7 +60,10 @@ export default {
       red: "#BF0436",
       darkRed: "#8C0327",
       darkPurple: "#250A40",
-      purple: "#462673"
+      purple: "#462673",
+      white: "#fff",
+      black: "#000",
+      gray20: "#333"
 
   }
 }

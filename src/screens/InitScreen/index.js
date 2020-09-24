@@ -1,20 +1,17 @@
 
 import React, { Component } from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
-  ScrollView,
   View,
   Text,
-  TextInput,
-  Alert,
-  StatusBar, TouchableOpacity, Image
+  StatusBar, TouchableOpacity, Image, ImageBackground
 } from 'react-native';
 import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
 import StyleConfig from 'src/helper/StyleConfig';
 import AppImages from 'src/assets/images';
+import { Button } from 'src/components/common/Button';
 class InitScreen extends Component{
     constructor(props){
         super(props);
@@ -23,35 +20,38 @@ class InitScreen extends Component{
         return (
             <>
               <StatusBar barStyle="dark-content" />
-              <SafeAreaView style={styles.container}>
-                <ScrollView
-                  contentInsetAdjustmentBehavior="automatic"
-                  style={styles.scrollView}>
-                  
-                  
-                  <View style={styles.body}>
+              <ImageBackground 
+                source={AppImages.initBack}
+                style={styles.ibContainer}
+              >
+                  <View style={styles.content}>
                       <Image
                         source={AppImages.icIcon}
                         resizeMode={'contain'}
-                        style={{
-                            height:StyleConfig.countPixelRatio(50),
-                            width:StyleConfig.countPixelRatio(100)
-                        }} />
-                      {/* <Text style={styles.sectionTitle1}>The world is a party let's plan one. Let's Emzee</Text>
-                      <Text style={styles.sectionTitle2}>Step One</Text>
-                      <Text style={styles.sectionTitle3}>Step One</Text>
-                      <Text style={styles.sectionTitle4}>Step One</Text>
-                      <Text style={styles.sectionTitle5}>Step One</Text> */}
-                    <View style={{justifyContent:'center'}}>
-                        <TouchableOpacity style={{ height: StyleConfig.countPixelRatio(60), width: StyleConfig.width*0.4, borderRadius: 50 }} noPressedState={true}
-                            onPress={() => this.props.navigation.navigate("Login")}
-                            >
-                            <Text style={{ fontFamily: StyleConfig.fontMedium, color: StyleConfig.COLORS.purple }}>Login</Text>
-                        </TouchableOpacity>
-                    </View>
+                        style={styles.appIcon} />
+                      <Text style={styles.sectionTitle1}>The world is a party let's plan one. Let's Emzee</Text>
+                      <View style={{flex:1}}>
+
+                      </View>
+                      <Button
+                        onPress={() => this.props.navigation.navigate("Login")}
+                        buttonWrap={{backgroundColor:"#388E3C", borderColor:"#388E3C", marginBottom:StyleConfig.countPixelRatio(24)}}
+                      >Ready to Plan? Let's Emzee</Button>
+                      
+                      <Button
+                        buttonWrap={{backgroundColor:StyleConfig.COLORS.darkRed, marginBottom:StyleConfig.countPixelRatio(24)}}
+                        onPress={() => this.props.navigation.navigate("Login")}
+                      >Vendors? Help Emzee</Button>
+                      
+
+                      <Button
+                        buttonWrap={{width:StyleConfig.width*0.85, backgroundColor:'transparent', borderWidth:0,marginBottom:StyleConfig.countPixelRatio(24)}}
+                        onPress={() => this.props.navigation.navigate("Login")}
+                      >Are you new at Emzee? Sign Up</Button>
+                      
                   </View>
-                </ScrollView>
-              </SafeAreaView>
+                </ImageBackground>
+                
             </>
           );
     }
@@ -59,75 +59,25 @@ class InitScreen extends Component{
 export default InitScreen ;
 
 const styles = StyleSheet.create({
-    container:{
-        backgroundColor:'#e0e5ec',
-        flex:1
-    },
-  scrollView: {
-    
+  ibContainer:{
+    width:StyleConfig.width,
+    height:StyleConfig.height
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    
-    justifyContent:'center',
+  content:{
+    flex:1,
+    backgroundColor:'#00000088',
     alignItems:'center',
-    marginTop:100
-    
+    paddingTop: StyleConfig.countPixelRatio(100)
   },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontFamily: StyleConfig.fontRegular,
-    fontSize: 24,
-    color: Colors.black,
+  appIcon:{
+    height:StyleConfig.countPixelRatio(100),
+    width:StyleConfig.countPixelRatio(200),
+    tintColor: '#fff'
   },
   sectionTitle1: {
-    fontFamily: StyleConfig.fontLight,
-    fontSize: StyleConfig.fontSizeH3,
-    color: Colors.black,
-  },
-  sectionTitle2: {
-    fontFamily: StyleConfig.fontRegular,
-    fontSize: 24,
-    color: Colors.black,
-  },
-  sectionTitle3: {
-    fontFamily: StyleConfig.fontMedium,
-    fontSize: 24,
-    color: Colors.black,
-  },
-  sectionTitle4: {
     fontFamily: StyleConfig.fontSemiBold,
-    fontSize: 24,
-    color: Colors.black,
+    fontSize: StyleConfig.fontSizeH3,
+    color: StyleConfig.COLORS.white,
   },
-  sectionTitle5: {
-    fontFamily: StyleConfig.fontBold,
-    fontSize: 24,
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontFamily: StyleConfig.fontRegular,
-    
-    color: Colors.dark,
-  },
-  highlight: {
-    fontFamily: StyleConfig.fontRegular,
-    
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontFamily: StyleConfig.fontRegular,
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
+  
 });

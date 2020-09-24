@@ -18,7 +18,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import AppImages from 'src/assets/images';
 import { Button } from 'src/components/common/Button';
-class LoginScreen extends Component{
+class OTPVerificationScreen extends Component{
     constructor(props){
         super(props);
     }
@@ -62,13 +62,14 @@ class LoginScreen extends Component{
                         style={styles.inputStyle}
                         placeholderTextColor={"#888"}
                         keyboardType={'phone-pad'}
-                        placeholder={"Enter your phone number"}
+                        maxLength={6}
+                        placeholder={"Enter your confirmation number"}
                       ></TextInput>
                       </View>
 
-                      <Button
-                      onPress={()=> this.props.navigation.navigate("OTPVerificationScreen")}
-                      buttonWrap={{width: StyleConfig.width*0.5}}>Sign Up</Button>
+                      <Button 
+                        onPress={()=> this.props.navigation.navigate("Dashboard")}
+                      buttonWrap={{width: StyleConfig.width*0.5}}>Submit</Button>
 
                     </View>
                 </ScrollView>
@@ -77,7 +78,7 @@ class LoginScreen extends Component{
           );
     }
 }
-export default LoginScreen ;
+export default OTPVerificationScreen ;
 
 const styles = StyleSheet.create({
   scrollView: {
