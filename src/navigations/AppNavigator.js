@@ -10,6 +10,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import InitScreen from '../screens/InitScreen';
+import RegisterScreen from '../screens/RegisterScreen';
 import LoginScreen from '../screens/LoginScreen';
 import OTPVerificationScreen from '../screens/OTPVerificationScreen';
 import EventScreen from '../screens/EventScreen';
@@ -36,18 +37,13 @@ const TabNavigator = ((props) => {
           } else if (route.name === 'Settings') {
             iconName = "gear";
           }
-
-          // You can return any component that you like here!
-          return <FontAwesome name={iconName} size={StyleConfig.countPixelRatio(28)} color={color}  />;
-
-          // <Icon name={iconName} size={32} color={color} />;
+          return <FontAwesome name={iconName} size={StyleConfig.countPixelRatio(22)} color={color}  />;
         },
       })}
       tabBarOptions={{
         showLabel: true,
         activeTintColor: StyleConfig.COLORS.purple,
-        inactiveTintColor: "#33333399",
-        
+        inactiveTintColor: "#333333aa"
       }}
     >
       <Tab.Screen name="Events" component={EventScreen} />
@@ -69,6 +65,7 @@ const AppNavigator = ({ ...props }) => {
         headerMode={'screen'}
       >
         <Stack.Screen options={{ headerShown: false }} name="Init" component={InitScreen} path={'init'} />
+        <Stack.Screen options={{ headerShown: false }} name="Register" component={RegisterScreen} />
         <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen} />
         <Stack.Screen options={{ headerShown: false }} name="OTPVerificationScreen" component={OTPVerificationScreen} />
 

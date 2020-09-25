@@ -46,7 +46,7 @@ class InitScreen extends Component{
 
                       <Button
                         buttonWrap={{width:StyleConfig.width*0.85, backgroundColor:'transparent', borderWidth:0,marginBottom:StyleConfig.countPixelRatio(24)}}
-                        onPress={() => this.props.navigation.navigate("Login")}
+                        onPress={() => this.props.navigation.navigate("Register")}
                       >Are you new at Emzee? Sign Up</Button>
                       
                   </View>

@@ -18,6 +18,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import AppImages from 'src/assets/images';
 import { Button } from 'src/components/common/Button';
+import { CommonActions } from '@react-navigation/native';
 class OTPVerificationScreen extends Component{
     constructor(props){
         super(props);
@@ -68,8 +69,8 @@ class OTPVerificationScreen extends Component{
                       </View>
 
                       <Button 
-                        onPress={()=> this.props.navigation.navigate("Dashboard")}
-                      buttonWrap={{width: StyleConfig.width*0.5}}>Submit</Button>
+                        onPress={()=> this.props.navigation.dispatch(CommonActions.reset({ index: 0, routes: [{ name: 'Dashboard' }] })) }
+                        buttonWrap={{width: StyleConfig.width*0.5}}>Submit</Button>
 
                     </View>
                 </ScrollView>

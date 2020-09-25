@@ -44,13 +44,6 @@ export default {
   fontSizeParagraph: 13 * ratioCount,
   iconSize: 26 * ratioCount,
   headerHeight: iPhoneX ? 90 * width / 375 : 60 * width / 375,
-  black: '#000',
-  white: '#ffffff',
-  grey: '#808080',
-  grey_light: '#D3D3D3',
-  yellow: '#FA9000',
-  blue: '#0465C6',
-  cLightCyan: '#CCF7F5',
   isIphone: Platform.OS === 'ios',
   iPhoneX,
   statusBarHeight: 55,
@@ -65,5 +58,21 @@ export default {
       black: "#000",
       gray20: "#333"
 
-  }
+  },
+
+  card:{
+    backgroundColor: "#fff",
+    borderRadius: 5 * ratioCount,
+    shadowColor: "#000",
+    shadowOffset: {
+    width: 0,
+    height: 2* ratioCount,
+    },
+    shadowOpacity: 0.3,
+    elevation: 2,
+    shadowRadius: 6* ratioCount,
+    padding:8* ratioCount,
+    margin:8* ratioCount,
+    
+},
 }

@@ -28,8 +28,8 @@ const styles = StyleSheet.create({
         borderWidth:1
     },
     buttonText:{ 
-        opacity:0.75,
-        fontFamily: StyleConfig.fontMedium,
+        opacity:0.7,
+        fontFamily: StyleConfig.fontBold,
         color: StyleConfig.COLORS.white,
         fontSize: StyleConfig.fontSizeH2 
     }
