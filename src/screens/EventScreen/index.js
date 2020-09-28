@@ -43,45 +43,45 @@ class EventScreen extends Component{
               <SafeAreaView style={{ flex:1, backgroundColor:'#fff'}}>
                   <View style={{flexDirection: 'row', alignItems:'center', justifyContent:'space-between'}}>
                       <View
-                        style={local_styles.backWrap}>
+                        style={styles.backWrap}>
                         <Ionicons name={"ios-chevron-back-sharp"} color={'transparent'} size={StyleConfig.countPixelRatio(24)} />
                       </View>
-                      <Text style={local_styles.headerTitle}>Event</Text>
+                      <Text style={styles.headerTitle}>Event</Text>
                       <TouchableOpacity 
                         onPress={()=> this.setState({isCalendarView: !isCalendarView})}
-                        style={local_styles.backWrap}>
+                        style={styles.backWrap}>
                         <FontAwesome name={ isCalendarView ? "list" : "calendar"} color={'#333333dd'} size={StyleConfig.countPixelRatio(24)} />
                       </TouchableOpacity>
                   </View>                 
                 <ScrollView
                   contentInsetAdjustmentBehavior="automatic"
-                  style={local_styles.scrollView}>
+                  style={styles.content}>
                     <View style={[StyleConfig.card,{ flexDirection:'row', alignItems:'center', margin:StyleConfig.countPixelRatio(16)}]}>
                       <FontAwesome name={"check-circle"} size={StyleConfig.countPixelRatio(30)} color={'#388E3C88'} />
                       <View style={{marginLeft:StyleConfig.countPixelRatio(12)}}>
-                        <Text style={local_styles.welcomeText}>You are all set!</Text>
-                        <Text style={local_styles.welcomeText}>Lets add your first event now!</Text>
+                        <Text style={styles.textH23Medium}>You are all set!</Text>
+                        <Text style={styles.textH23Medium}>Lets add your first event now!</Text>
                       </View>
                     </View>
 
                     <View style={[StyleConfig.card,{  margin:StyleConfig.countPixelRatio(16)}]}>
-                        <View style={local_styles.textInputWrap}>
+                        <View style={[styles.textInputWrap, {flex:1, width:null,margin:StyleConfig.countPixelRatio(8)}]}>
                           <TextInput
                             style={styles.textH3Regular}
                             placeholderTextColor={"#33333399"}
                             placeholder={"Event name e.g. 50th Bob's Birthday"}
                           />
                         </View>
-                        <View style={local_styles.textInputWrap}>
+                        <View style={[styles.textInputWrap, {flex:1, width:null,margin:StyleConfig.countPixelRatio(8)}]}>
                           <TextInput
                             style={styles.textH3Regular}
                             placeholderTextColor={"#33333399"}
                             placeholder={"Location e.g. ABC Banquet Hall"}
                           />
                         </View>
-                        <Text style={local_styles.notesText}>a name your guests and vendors recorgnise</Text>
+                        <Text style={styles.notesText}>a name your guests and vendors recorgnise</Text>
                         
-                        <View style={local_styles.textInputWrap}>
+                        <View style={[styles.textInputWrap, {flex:1, width:null,margin:StyleConfig.countPixelRatio(8)}]}>
                           <TextInput
                             style={styles.textH3Regular}
                             placeholderTextColor={"#33333399"}
@@ -89,7 +89,7 @@ class EventScreen extends Component{
                           />
                         </View>
 
-                        <View style={local_styles.textInputWrap}>
+                        <View style={[styles.textInputWrap, {flex:1, width:null,margin:StyleConfig.countPixelRatio(8)}]}>
                           <TextInput
                             style={styles.textH3Regular}
                             placeholderTextColor={"#33333399"}
@@ -115,47 +115,7 @@ class EventScreen extends Component{
 }
 export default withLoader(EventScreen) ;
 
-const local_styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: "#fff",
-  },
-  backWrap:{
-    paddingHorizontal:StyleConfig.countPixelRatio(16), 
-    paddingVertical:StyleConfig.countPixelRatio(4),
-  },
-  headerTitle:{
-    fontFamily: StyleConfig.fontMedium,
-    fontSize: StyleConfig.fontSizeH2,
-    opacity: 0.8
-  },
-  appIcon:{
-    height:StyleConfig.countPixelRatio(100),
-    width:StyleConfig.countPixelRatio(200)
-  },
-  sectionTitle1: {
-    fontFamily: StyleConfig.fontSemiBold,
-    fontSize: StyleConfig.fontSizeH3,
-  },
-  welcomeText:{
-    fontFamily: StyleConfig.fontMedium,
-    fontSize: StyleConfig.fontSizeH2_3
-  },
-  notesText:{
-    fontFamily: StyleConfig.fontRegular,
-    fontSize: StyleConfig.fontSizeH4,
-    marginTop: StyleConfig.countPixelRatio(-6),
-    marginLeft: StyleConfig.countPixelRatio(8),
-    marginBottom: StyleConfig.countPixelRatio(8)
-  },
-  textInputWrap:{
-    borderWidth:0.5,
-    borderRadius: StyleConfig.countPixelRatio(4),
-    paddingVertical:StyleConfig.countPixelRatio(2),
-    paddingHorizontal:StyleConfig.countPixelRatio(8),
-    margin:StyleConfig.countPixelRatio(8),
-    flex:1,
-    justifyContent:'center',
-    minHeight: StyleConfig.countPixelRatio(48)
-  },
+// const styles = StyleSheet.create({
   
-});
+  
+// });

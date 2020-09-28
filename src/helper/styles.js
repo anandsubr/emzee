@@ -37,8 +37,6 @@ const styles= StyleSheet.create({
         fontSize: StyleConfig.fontSizeH3,
         color: StyleConfig.COLORS.white,
     },
-    
-
     headerWrap:{
         flexDirection: 'row',
         alignItems:'center',
@@ -56,22 +54,16 @@ const styles= StyleSheet.create({
         width: StyleConfig.width*0.5,
         marginVertical:StyleConfig.countPixelRatio(28)
     },
-        scrollView: {
-        backgroundColor: StyleConfig.COLORS.white,
-    },
     headerTitle:{
         fontFamily: StyleConfig.fontMedium,
         fontSize: StyleConfig.fontSizeH2,
         opacity: 0.8
     },
-    appIcon:{
-        height:StyleConfig.countPixelRatio(100),
-        width:StyleConfig.countPixelRatio(200)
-    },
     textInputWrap:{
         borderWidth:0.5,
         borderRadius: StyleConfig.countPixelRatio(4),
-        padding:StyleConfig.countPixelRatio(6),
+        paddingVertical:StyleConfig.countPixelRatio(2),
+        paddingHorizontal:StyleConfig.countPixelRatio(8),
         margin:StyleConfig.countPixelRatio(16),
         width: StyleConfig.width*0.7,
         justifyContent:'center',
@@ -91,6 +83,17 @@ const styles= StyleSheet.create({
         fontFamily: StyleConfig.fontSemiBold,
         fontSize: StyleConfig.fontSizeH3,
         color: StyleConfig.COLORS.cyanBlue
+    },
+    textH23Medium:{
+        fontFamily: StyleConfig.fontMedium,
+        fontSize: StyleConfig.fontSizeH2_3
+    },
+    notesText:{
+        fontFamily: StyleConfig.fontRegular,
+        fontSize: StyleConfig.fontSizeH4,
+        marginTop: StyleConfig.countPixelRatio(-6),
+        marginLeft: StyleConfig.countPixelRatio(8),
+        marginBottom: StyleConfig.countPixelRatio(8)
     }
 });
 

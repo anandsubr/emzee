@@ -31,7 +31,7 @@ class OTPVerificationScreen extends Component{
               <SafeAreaView style={styles.container}>
                 <ScrollView
                   contentInsetAdjustmentBehavior="automatic"
-                  style={local_styles.scrollView}>
+                  style={styles.content}>
                     <View style={{flexDirection: 'row', alignItems:'center', justifyContent:'space-between'}}>
                       <TouchableOpacity 
                       onPress={()=> this.props.navigation.goBack()}

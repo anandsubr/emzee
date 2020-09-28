@@ -41,7 +41,7 @@ class RegisterScreen extends Component{
                     </View>
                     <ScrollView
                       contentInsetAdjustmentBehavior="automatic"
-                      style={styles.scrollView}>
+                      style={styles.content}>
                       <View style={styles.appIconWrap}>
                         <Image
                             source={AppImages.icIcon}
