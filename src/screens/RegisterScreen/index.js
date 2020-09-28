@@ -2,26 +2,26 @@
 import React, { Component } from 'react';
 import {
   SafeAreaView,
-  StyleSheet,
   ScrollView,
   View,
   Text,
   Image,
   StatusBar,
+  TouchableOpacity
 } from 'react-native';
 
-import {
-  Colors,
-} from 'react-native/Libraries/NewAppScreen';
 import StyleConfig from 'src/helper/StyleConfig';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import AppImages from 'src/assets/images';
 import { Button } from 'src/components/common/Button';
+import { TextInputMask } from 'react-native-masked-text'
+import styles from 'src/helper/styles';
+import strings from 'src/helper/strings';
 import withLoader from 'src/redux/actionCreator/withLoader'
 class RegisterScreen extends Component{
     constructor(props){
         super(props);
+        this.state={ phone: '' }
     }
     render(){
         return (
@@ -32,11 +32,11 @@ class RegisterScreen extends Component{
                       <TouchableOpacity 
                         onPress={()=> this.props.navigation.goBack()}
                         style={styles.backWrap}>
-                        <Ionicons name={"ios-chevron-back-sharp"} color={'#333'} size={StyleConfig.countPixelRatio(24)} />
+                        <Ionicons name={"ios-chevron-back-sharp"} color={StyleConfig.COLORS.gray20} size={StyleConfig.headerIconSize} />
                       </TouchableOpacity>
-                      <Text style={styles.headerTitle}>SIGN UP</Text>
+                      <Text style={styles.headerTitle}>{strings.sign_up}</Text>
                       <View style={styles.backWrap}>
-                        <Ionicons name={"ios-chevron-back-sharp"} color={'#fff'} size={StyleConfig.countPixelRatio(24)} />
+                        <Ionicons name={"ios-chevron-back-sharp"} color={StyleConfig.COLORS.transparent} size={StyleConfig.headerIconSize} />
                       </View>
                     </View>
                     <ScrollView
@@ -47,26 +47,33 @@ class RegisterScreen extends Component{
                             source={AppImages.icIcon}
                             resizeMode={'contain'}
                             style={styles.appIcon} />
-                        <Text style={styles.sectionTitle1}>The world is a party let's plan one. Let's Emzee</Text>
+                        <Text style={[styles.appDescText, {color: StyleConfig.COLORS.gray20}]}>{strings.the_world_is_a_party_lets_plan_one_lets_emzee}</Text>
                       </View>
                       <View style={{ alignItems:'center'}}>
                         <View style={styles.textInputWrap}>
-                        <TextInput
-                          style={styles.inputStyle}
-                          placeholderTextColor={"#888"}
-                          keyboardType={'phone-pad'}
-                          placeholder={"Enter your phone number"}
-                        ></TextInput>
+                        <TextInputMask
+                          type={'custom'}
+                          options={{
+                            mask: strings.mask_phone
+                          }}
+                          style={styles.textH3Regular}
+                          placeholderTextColor={StyleConfig.COLORS.inputHintColor}
+                          placeholder={strings.enter_your_phone_number}
+                          value={this.state.phone}
+                          onChangeText={phone => {
+                            this.setState({ phone })
+                          }}
+                        />
                         </View>
 
                         <Button
                           onPress={()=>this.props.navigation.navigate("OTPVerificationScreen")}
-                          buttonWrap={styles.buttonWrap}>Sign Up</Button>
+                        buttonWrap={styles.buttonWrap}>{strings.sign_up}</Button>
 
-                        <View style={{flexDirection:'row'}}>
-                          <Text style={styles.haveLoginText}>Already have an account?</Text>
-                          <TouchableOpacity onPress={()=> this.props.navigation.navigate("Login")} style={styles.loginWrap}>
-                            <Text style={styles.loginHere}>Login Here</Text>
+                        <View style={styles.row}>
+                        <Text style={styles.textH3Regular}>{strings.already_have_an_account}</Text>
+                          <TouchableOpacity onPress={()=> this.props.navigation.navigate("Login")} style={styles.linkWrap}>
+                            <Text style={styles.linkText}>{strings.login_here}</Text>
                           </TouchableOpacity>
                         </View>
                       </View>
@@ -77,73 +84,3 @@ class RegisterScreen extends Component{
     }
 }
 export default withLoader(RegisterScreen) ;
-
-const styles = StyleSheet.create({
-  container:{ 
-    flex:1, 
-    backgroundColor:'#fff'
-  },
-  headerWrap:{
-    flexDirection: 'row',
-    alignItems:'center',
-    justifyContent:'space-between'
-  },
-  backWrap:{
-    paddingHorizontal:StyleConfig.countPixelRatio(16), 
-    paddingVertical:StyleConfig.countPixelRatio(4)
-  },
-  appIconWrap:{
-    alignItems:'center',
-    marginVertical:StyleConfig.countPixelRatio(50) 
-  },
-  buttonWrap:{
-    width: StyleConfig.width*0.5,
-    marginVertical:StyleConfig.countPixelRatio(28)
-  },
-  scrollView: {
-    backgroundColor: "#fff",
-  },
-  headerTitle:{
-    fontFamily: StyleConfig.fontMedium,
-    fontSize: StyleConfig.fontSizeH2,
-    opacity: 0.8
-  },
-  appIcon:{
-    height:StyleConfig.countPixelRatio(100),
-    width:StyleConfig.countPixelRatio(200)
-  },
-  sectionTitle1: {
-    fontFamily: StyleConfig.fontSemiBold,
-    fontSize: StyleConfig.fontSizeH3,
-    
-  },
-  
-  textInputWrap:{
-    borderWidth:0.5,
-    borderRadius: StyleConfig.countPixelRatio(4),
-    padding:StyleConfig.countPixelRatio(6),
-    margin:StyleConfig.countPixelRatio(16),
-    width: StyleConfig.width*0.7,
-    justifyContent:'center',
-    minHeight: StyleConfig.countPixelRatio(48)
-  },
-  inputStyle: {
-    fontFamily: StyleConfig.fontRegular,
-    fontSize: StyleConfig.fontSizeH3,
-  },
-  haveLoginText:{
-    fontFamily: StyleConfig.fontRegular,
-    fontSize: StyleConfig.fontSizeH3,
-    opacity:0.8
-  },
-  loginWrap:{
-    marginLeft: StyleConfig.countPixelRatio(6),
-    borderBottomWidth:1,
-    borderColor: "#2196F3"
-  },
-  loginHere:{
-    fontFamily: StyleConfig.fontSemiBold,
-    fontSize: StyleConfig.fontSizeH3,
-    color: "#2196F3"
-  }
-});

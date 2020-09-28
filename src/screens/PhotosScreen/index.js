@@ -42,26 +42,3 @@ class PhotosScreen extends Component{
 }
 export default PhotosScreen ;
 
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: "#fff",
-  },
-  headerTitle:{
-    fontFamily: StyleConfig.fontMedium,
-    fontSize: StyleConfig.fontSizeH2,
-    opacity: 0.8
-  },
-  appIcon:{
-    height:StyleConfig.countPixelRatio(100),
-    width:StyleConfig.countPixelRatio(200)
-  },
-  sectionTitle1: {
-    fontFamily: StyleConfig.fontSemiBold,
-    fontSize: StyleConfig.fontSizeH3,
-    
-  },
-  inputStyle: {
-    fontFamily: StyleConfig.fontRegular,
-    fontSize: StyleConfig.fontSizeH3,
-  }
-});

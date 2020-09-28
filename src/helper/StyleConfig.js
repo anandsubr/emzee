@@ -48,15 +48,24 @@ export default {
   iPhoneX,
   statusBarHeight: 55,
   isPad: Platform.OS === 'ios' && Platform.isPad,
+  headerIconSize: ratioCount*24,
   COLORS:{
+      transparent:"#00000000",
       rusticRed:"#40010D",
       red: "#BF0436",
       darkRed: "#8C0327",
       darkPurple: "#250A40",
       purple: "#462673",
+      cyanBlue: "#2196F3",
+
       white: "#fff",
       black: "#000",
-      gray20: "#333"
+      gray20: "#333",
+      inputHintColor: "#888",
+      
+
+      defaultTextColor: "#333",
+      hintTextColor: "#888"
 
   },
 

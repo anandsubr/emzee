@@ -19,6 +19,7 @@ import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import AppImages from 'src/assets/images';
 import { Button } from 'src/components/common/Button';
 import { CommonActions } from '@react-navigation/native';
+import styles from 'src/helper/styles';
 class OTPVerificationScreen extends Component{
     constructor(props){
         super(props);
@@ -27,17 +28,17 @@ class OTPVerificationScreen extends Component{
         return (
             <>
               <StatusBar barStyle="dark-content" />
-              <SafeAreaView style={{ flex:1, backgroundColor:'#fff'}}>
+              <SafeAreaView style={styles.container}>
                 <ScrollView
                   contentInsetAdjustmentBehavior="automatic"
-                  style={styles.scrollView}>
+                  style={local_styles.scrollView}>
                     <View style={{flexDirection: 'row', alignItems:'center', justifyContent:'space-between'}}>
                       <TouchableOpacity 
                       onPress={()=> this.props.navigation.goBack()}
                       style={{paddingHorizontal:StyleConfig.countPixelRatio(16), paddingVertical:StyleConfig.countPixelRatio(4)}}>
                       <Ionicons name={"ios-chevron-back-sharp"} color={'#333'} size={StyleConfig.countPixelRatio(24)} />
                       </TouchableOpacity>
-                      <Text style={styles.headerTitle}>SIGN UP</Text>
+                      <Text style={local_styles.headerTitle}>SIGN UP</Text>
                       <View style={{paddingHorizontal:StyleConfig.countPixelRatio(16), paddingVertical:StyleConfig.countPixelRatio(4)}}>
                       <Ionicons name={"ios-chevron-back-sharp"} color={'#fff'} size={StyleConfig.countPixelRatio(24)} />
                       </View>
@@ -46,8 +47,8 @@ class OTPVerificationScreen extends Component{
                       <Image
                           source={AppImages.icIcon}
                           resizeMode={'contain'}
-                          style={styles.appIcon} />
-                      <Text style={styles.sectionTitle1}>The world is a party let's plan one. Let's Emzee</Text>
+                          style={local_styles.appIcon} />
+                      <Text style={local_styles.sectionTitle1}>The world is a party let's plan one. Let's Emzee</Text>
                     </View>
                     <View style={{ alignItems:'center'}}>
                       <View style={{
@@ -60,7 +61,7 @@ class OTPVerificationScreen extends Component{
                         minHeight: StyleConfig.countPixelRatio(48)
                       }}>
                       <TextInput
-                        style={styles.inputStyle}
+                        style={styles.textH3Regular}
                         placeholderTextColor={"#888"}
                         keyboardType={'phone-pad'}
                         maxLength={6}
@@ -70,7 +71,7 @@ class OTPVerificationScreen extends Component{
 
                       <Button 
                         onPress={()=> this.props.navigation.dispatch(CommonActions.reset({ index: 0, routes: [{ name: 'Dashboard' }] })) }
-                        buttonWrap={{width: StyleConfig.width*0.5}}>Submit</Button>
+                        buttonWrap={{width: StyleConfig.width*0.5}}>Verify</Button>
 
                     </View>
                 </ScrollView>
@@ -81,7 +82,7 @@ class OTPVerificationScreen extends Component{
 }
 export default OTPVerificationScreen ;
 
-const styles = StyleSheet.create({
+const local_styles = StyleSheet.create({
   scrollView: {
     backgroundColor: "#fff",
   },
