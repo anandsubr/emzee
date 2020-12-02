@@ -16,9 +16,10 @@ import { Component } from 'react';
 import strings from 'src/helper/strings';
 import * as ImagePicker from 'expo-image-picker';
 import * as Const from 'src/helper/constant';
-
+import ApiManager from 'src/apiManager'
 import SelectPhotoTypeModal from 'src/components/SelectPhotoTypeModal';
 const USER_ID = 50
+const EVENT_ID = "JxAg9zgiNQBHXH8Mk0m0";
 class ChatComponent extends Component {
     constructor(props) {
         super(props);
@@ -28,6 +29,11 @@ class ChatComponent extends Component {
             currMessage: '',
             showSelectMediaModal: false
         }
+    }
+    componentDidMount= async () =>{
+        //getMessages
+        let messages = await ApiManager.getMessages(EVENT_ID)
+        console.log("compoentDidMount Chat messages", messages)
     }
     pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({

@@ -21,10 +21,12 @@ import PhotosComponent from 'src/screens/EventScreen/PhotosComponent';
 import ChatComponent from 'src/screens/EventScreen/ChatComponent';
 import withLoader from 'src/redux/actionCreator/withLoader';
 import withVendor from 'src/redux/actionCreator/withVendor';
+
 import styles from 'src/helper/styles';
 import * as Const from 'src/helper/constant';
 import strings from 'src/helper/strings';
 import Animated from 'react-native-reanimated';
+import ApiManager from 'src/apiManager'
 const userId = 50;
 const initialLayout = { width: StyleConfig.width };
 
@@ -63,7 +65,12 @@ class EventDetailScreen extends Component {
     },
       5000);
   }
-
+  componentDidMount= async()=>{
+    const { event, hostOfTheEvent } = this.props.route.params;
+    console.log("componentDidMount EventDetails -> ", event)
+    let response = await ApiManager.getEventDetails(event.id);
+    console.log({eventDetails:response})
+  }
 
   onItemPress = (event) => {
 

@@ -164,7 +164,7 @@ const ApiManager = {
         console.log({ confirmation })
     },
     getMessages: async (eventId) => {
-        return fetch(`${KEY_EVENTS}${eventId}/messages`, {
+        return fetch(`${KEY_EVENTS}/${eventId}/messages`, {
             method: "GET",
             headers: {
                 "Accept": "application/json",

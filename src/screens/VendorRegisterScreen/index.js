@@ -39,6 +39,8 @@ const errorInit = {
 }
 const TextInputWrap = ({ error, children }) => <View style={[styles.textInputWrap, { width: null, margin: StyleConfig.countPixelRatio(8), borderColor: error ? StyleConfig.COLORS.red : StyleConfig.COLORS.defaultTextColor }]}>
   {children}</View>
+  const TouchableTextInputWrap = ({ error, children, onPress }) => <TouchableOpacity onPress={onPress} style={[styles.textInputWrap, { width: null, margin: StyleConfig.countPixelRatio(8), borderColor: error ? StyleConfig.COLORS.red : StyleConfig.COLORS.defaultTextColor }]}>
+  {children}</TouchableOpacity>
 
 class VendorRegisterScreen extends Component {
   constructor(props) {
@@ -120,12 +122,6 @@ class VendorRegisterScreen extends Component {
     } else {
       this.setState({ error })
     }
-
-
-
-
-
-
   }
   render() {
     const { firstName,phone, showSelectServiceTypeModal, businessName, address, address2, city, state, country, error } = this.state;
@@ -149,13 +145,14 @@ class VendorRegisterScreen extends Component {
               />
             </TextInputWrap>
             {error.businessName && <Text style={styles.errorText}>{error.businessName}</Text>}
-            <TextInputWrap error={error.type_of_services != undefined}>
+            <TouchableTextInputWrap onPress={()=> this.setState({showSelectServiceTypeModal:true})} error={error.type_of_services != undefined}>
               <TextInput
+              editable={false}
                 style={styles.textH3Regular}
                 placeholderTextColor={StyleConfig.COLORS.hintTextColor}
                 placeholder={strings.type_of_services}
               />
-            </TextInputWrap>
+            </TouchableTextInputWrap>
             {error.type_of_services && <Text style={styles.errorText}>{error.type_of_services}</Text>}
             <View style={{ flexDirection: 'row', margin: StyleConfig.countPixelRatio(8) }} >
               <Button

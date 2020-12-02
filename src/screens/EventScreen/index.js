@@ -130,7 +130,7 @@ class EventScreen extends Component {
     calendarHeight: 0,
     selectedDate: new Date(),
     calendarData: {},
-    showAddEvent: true
+    showAddEvent: false
   }
   constructor(props) {
     super(props);
