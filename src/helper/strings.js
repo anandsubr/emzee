@@ -40,6 +40,7 @@ const strings = {
     "guest_list": "Guest List",
     "contacts": "Contacts",
     "vendor_profile": "Vendor Profile",
+    "profile": "Profile",
     "your_business_name": "Your Business Name",
     "type_of_services": "Type of service (i.e. Catering)",
     "your_location_details": "Your Location Details",

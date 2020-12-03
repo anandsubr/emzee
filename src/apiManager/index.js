@@ -42,11 +42,11 @@ const ApiManager = {
         });
     },
     getUserProfile: async (userId) => {
+        console.log(`API url -> ${KEY_USERS}/${userId}`)
         return fetch(`${KEY_USERS}/${userId}`, {
             method: "GET",
             headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
+                "Accept": "application/json"
             }
         }).then((response) => {
             return response.json()
