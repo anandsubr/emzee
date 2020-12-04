@@ -131,7 +131,7 @@ class VendorRegisterScreen extends Component {
         <StatusBar barStyle="dark-content" />
         <SafeAreaView style={styles.flex1White}>
           <View style={styles.headerWrapSingle}>
-            <Text style={styles.headerTitle}>{strings.vendor_profile}</Text>
+            <Text style={styles.headerTitle}>{isVendor ? strings.vendor_registration : strings.registration}</Text>
           </View>
           <ScrollView style={styles.contentWithPadding}>
             {isVendor ? <>

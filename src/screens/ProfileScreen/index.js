@@ -73,7 +73,8 @@ class ProfileScreen extends Component {
                         
                         <TouchableOpacity
                             onPress={this.onLogout}
-                            style={{ flexDirection: 'row', alignItems: 'center', marginTop:20, marginLeft:16 }}>
+                            style={[styles.cardRow, { paddingHorizontal: StyleConfig.countPixelRatio(12), paddingVertical: 12 }]}>
+                            
                             <Text style={styles.headerTitle}>Logout</Text>
                         </TouchableOpacity>
                     

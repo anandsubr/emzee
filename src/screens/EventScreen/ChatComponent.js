@@ -20,6 +20,7 @@ import ApiManager from 'src/apiManager'
 import SelectPhotoTypeModal from 'src/components/SelectPhotoTypeModal';
 const USER_ID = 50
 const EVENT_ID = "JxAg9zgiNQBHXH8Mk0m0";
+const USER_ID2 = "EGDtaROorlajrAOb9dmv";
 class ChatComponent extends Component {
     constructor(props) {
         super(props);
@@ -34,6 +35,7 @@ class ChatComponent extends Component {
         //getMessages
         let messages = await ApiManager.getMessages(EVENT_ID)
         console.log("compoentDidMount Chat messages", messages)
+        this.setState({chats:messages})
     }
     pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -71,10 +73,11 @@ class ChatComponent extends Component {
                                 keyExtractor={(item, index) => `chat${index}`}
                                 renderItem={({ item }) => {
                                     console.log("uri-", item.uri)
+                                    let sendByMe = item.createdByUserId == USER_ID2 ;
                                     return (
-                                        <View style={{ flexDirection: USER_ID == item.userId ? 'row-reverse' : "row", paddingHorizontal: StyleConfig.countPixelRatio(8), marginTop: StyleConfig.countPixelRatio(8) }}>
+                                        <View style={{ flexDirection: sendByMe? 'row-reverse' : "row", paddingHorizontal: StyleConfig.countPixelRatio(8), marginTop: StyleConfig.countPixelRatio(8) }}>
                                             <Image
-                                                source={{ uri: item.userId ? "https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/man5-512.png" : "https://icon-library.com/images/lady-icon/lady-icon-7.jpg" }}
+                                                source={{ uri: sendByMe ? "https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/man5-512.png" : "https://icon-library.com/images/lady-icon/lady-icon-7.jpg" }}
                                                 style={styles.chatProfilePhoto}
                                             />
                                             {item.type == "photo" ?
@@ -86,7 +89,7 @@ class ChatComponent extends Component {
                                                 </View>
                                                 :
                                                 <View style={styles.cardRow}>
-                                                    <Text style={styles.textH3Regular}>{item.message}</Text>
+                                                    <Text style={styles.textH3Regular}>{item.text}</Text>
                                                 </View>
                                             }
 

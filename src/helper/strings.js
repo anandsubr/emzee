@@ -52,7 +52,10 @@ const strings = {
     "enter_otp": "Enter OTP",
     "required": "Required",
     "first_name": "First name",
-    "last_name": "Last name"
+    "last_name": "Last name",
+    "registration" : "Registration",
+    "vendor_registration": "Vendor Registration"
+
 
 
 
