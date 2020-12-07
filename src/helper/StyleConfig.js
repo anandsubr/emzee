@@ -80,6 +80,8 @@ export default {
 
   card: {
     backgroundColor: "#fff",
+    borderWidth: 0.5,
+    borderColor:"#bbb",
     borderRadius: 5 * ratioCount,
     shadowColor: "#000",
     shadowOffset: {

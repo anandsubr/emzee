@@ -119,7 +119,7 @@ class EventDetailScreen extends Component {
       chat: () => <ChatComponent {...this.props} hostOfTheEvent={hostOfTheEvent} />
     });
     //
-    console.log({ hostOfTheEvent })
+    console.log({ hostOfTheEvent,event })
     return (
       <>
         <StatusBar barStyle="dark-content" />
@@ -129,7 +129,7 @@ class EventDetailScreen extends Component {
               style={styles.backWrap}>
               <FontAwesome name={Const.IC_BACK} color={StyleConfig.COLORS.defaultTextColor} size={StyleConfig.headerIconSize} />
             </TouchableOpacity>
-            <Text style={styles.headerTitle}>{event.eventName}</Text>
+            <Text style={styles.headerTitle}>{event.name}</Text>
             <View
               style={styles.backWrap}>
               <FontAwesome name={Const.IC_BACK} color={StyleConfig.COLORS.transparent} size={StyleConfig.headerIconSize} />

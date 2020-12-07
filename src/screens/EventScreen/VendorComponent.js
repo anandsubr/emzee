@@ -23,10 +23,11 @@ import { FlatList } from 'react-native-gesture-handler';
 const VendorComponent = (props) => {
     const [phone, setPhone] = useState('');
     const [addNew, setIsNew] = useState(props.initial);
+    const length = addNew ? 0 : props.vendors.length;
     return (
         <View style={styles.flex1}>
             { addNew ?
-                <View style={[styles.flex1, styles.card,]}>
+                <View style={styles.card}>
                     <Text style={styles.textH3Regular}>{'We want your party to be stressfree and painless. Let\'s add everyone who is going to serve at the event. Cateres, Photographers etc..'}</Text>
                     <View style={[styles.textInputWrap, { width: null, margin: StyleConfig.countPixelRatio(8) }]}>
                         <TextInput
@@ -63,13 +64,12 @@ const VendorComponent = (props) => {
                         <Button onPress={props.onSavePress} buttonWrap={{ width: StyleConfig.width * 0.25, minHeight: StyleConfig.countPixelRatio(36) }}>Invite</Button>
                     </View>
                 </View> :
-
                 <FlatList
                     data={props.vendors}
                     extraData={props}
-                    contentContainerStyle={[styles.flex1, styles.card,]}
+                    contentContainerStyle={ styles.card}
                     keyExtractor={(item) => `vendor${item.id}`}
-                    renderItem={({ item }) => <View style={{ flexDirection: 'row', borderBottomColor: StyleConfig.COLORS.headerBorderColor, borderBottomWidth: 1, alignItems: 'center', paddingVertical: StyleConfig.countPixelRatio(8) }}>
+                    renderItem={({ item, index }) => <View style={{ flexDirection: 'row', borderBottomColor: StyleConfig.COLORS.headerBorderColor, borderBottomWidth: length == index+1 && !props.hostOfTheEvent ? 0 : 1, alignItems: 'center', paddingVertical: StyleConfig.countPixelRatio(8) }}>
                         <FontAwesome name={item.status == 1 ? "check-circle" : item.status == -1 ? "times-circle" : "question-circle"}
                             size={StyleConfig.countPixelRatio(24)}
                             color={item.status == 1 ? StyleConfig.COLORS.lightGreen : item.status == -1 ? StyleConfig.COLORS.lightRed : StyleConfig.COLORS.lightYellow} />
@@ -92,8 +92,7 @@ const VendorComponent = (props) => {
 
                     }}
 
-                />
-
+                    />
             }
         </View>
     )
