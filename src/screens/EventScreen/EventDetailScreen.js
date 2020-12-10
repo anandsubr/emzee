@@ -67,9 +67,9 @@ class EventDetailScreen extends Component {
   }
   componentDidMount= async()=>{
     const { event, hostOfTheEvent } = this.props.route.params;
-    console.log("componentDidMount EventDetails -> ", event)
-    let response = await ApiManager.getEventDetails(event.id);
-    console.log({eventDetails:response})
+    //let response = await ApiManager.getEventDetails(event.id);
+    let participants = await ApiManager.getParticipants('')
+    console.log({eventDetails:event, participants, id: event.id})
   }
 
   onItemPress = (event) => {
@@ -111,14 +111,13 @@ class EventDetailScreen extends Component {
     const renderScene = this.props.isVendor ? SceneMap({
       info: () => <InfoComponent {...this.props} initial={isAddNewVendor} vendors={vendors} hostOfTheEvent={hostOfTheEvent} onSavePress={() => this.setState({ isAddNewVendor: false })} onAddNewPress={() => this.setState({ isAddNewVendor: true })} />,
       photos: () => <PhotosComponent {...this.props} hostOfTheEvent={hostOfTheEvent} />,
-      chat: () => <ChatComponent {...this.props} hostOfTheEvent={hostOfTheEvent} />
+      chat: () => <ChatComponent {...this.props} event={event} hostOfTheEvent={hostOfTheEvent} />
     }) : SceneMap({
       vendors: () => <VendorComponent {...this.props} initial={isAddNewVendor} vendors={vendors} hostOfTheEvent={hostOfTheEvent} onSavePress={() => this.setState({ isAddNewVendor: false })} onAddNewPress={() => this.setState({ isAddNewVendor: true })} />,
       guests: () => <GuestComponent {...this.props} hostOfTheEvent={hostOfTheEvent} />,
       photos: () => <PhotosComponent {...this.props} hostOfTheEvent={hostOfTheEvent} />,
-      chat: () => <ChatComponent {...this.props} hostOfTheEvent={hostOfTheEvent} />
+      chat: () => <ChatComponent {...this.props} event={event} hostOfTheEvent={hostOfTheEvent} />
     });
-    //
     console.log({ hostOfTheEvent,event })
     return (
       <>

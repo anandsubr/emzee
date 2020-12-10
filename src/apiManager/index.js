@@ -178,19 +178,15 @@ const ApiManager = {
             console.log('error', error)
         });
     },
-    postMessage: async (eventId) => {
-        return fetch(`${KEY_EVENTS}${eventId}/messages`, {
+    postMessage: async (eventId, data) => {
+        return fetch(`${KEY_EVENTS}/${eventId}/messages`, {
             method: "POST",
             headers: {
                 "Accept": "application/json",
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "auth": AUTH_TOKEN
             },
-            body: JSON.stringify({
-                "text": "Hello world",
-                "createdByUserId": "EGDtaROorlajrAOb9dmv",
-                "createdDateTime": "02-01-2020",
-                "toUserId": "EGDtaROorlajrAOb9dmv"
-            })
+            body: JSON.stringify(data)
         }).then((response) => {
             return response.json()
         }, function (error) {
@@ -198,6 +194,22 @@ const ApiManager = {
         }).catch((error) => {
             console.log('error', error)
         });
-    }
+    },
+    getParticipants: async (eventId) => {
+        console.log(`url->  ${KEY_EVENTS}/${eventId}/participants`)
+        return fetch(`${KEY_EVENTS}/${eventId}/participants`, {
+            method: "GET",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
+        }).then((response) => {
+            return response.json()
+        }, function (error) {
+            console.log('error', error)
+        }).catch((error) => {
+            console.log('error', error)
+        });
+    },
 }
 module.exports = ApiManager;

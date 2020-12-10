@@ -147,7 +147,7 @@ class PhotosComponent extends Component {
     render() {
         const { albums, width, showDropdown, groupBy, showSelectMediaModal } = this.state;
         let itemWidth = (StyleConfig.width - StyleConfig.countPixelRatio(64)) / 3
-        console.log(JSON.stringify(albums))
+        //console.log(JSON.stringify(albums))
         return (
             <View style={styles.flex1}>
                 <View style={{ height: StyleConfig.statusBarHeight, flexDirection: 'row-reverse', alignItems: 'center' }}>

@@ -28,12 +28,12 @@ const VendorComponent = (props) => {
         <View style={styles.flex1}>
             { addNew ?
                 <View style={styles.card}>
-                    <Text style={styles.textH3Regular}>{'We want your party to be stressfree and painless. Let\'s add everyone who is going to serve at the event. Cateres, Photographers etc..'}</Text>
+                    <Text style={styles.textH3Regular}>{strings.we_want_your_party_to_be_stressfree_and_painless_lets_add_everyone_who_is_going_to_serve_at_the_event_cateres_photographers_etc}</Text>
                     <View style={[styles.textInputWrap, { width: null, margin: StyleConfig.countPixelRatio(8) }]}>
                         <TextInput
                             style={styles.textH3Regular}
                             placeholderTextColor={StyleConfig.COLORS.hintTextColor}
-                            placeholder={"Service Provider (e.g. Photographer)"}
+                            placeholder={strings.placeholder_service_provider}
                         />
                     </View>
 
@@ -41,7 +41,7 @@ const VendorComponent = (props) => {
                         <TextInput
                             style={styles.textH3Regular}
                             placeholderTextColor={StyleConfig.COLORS.hintTextColor}
-                            placeholder={"Micah\'s Photography"}
+                            placeholder={strings.placeholder_title_vendor}
                         />
                     </View>
 

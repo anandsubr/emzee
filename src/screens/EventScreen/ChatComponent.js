@@ -16,7 +16,9 @@ import { Component } from 'react';
 import strings from 'src/helper/strings';
 import * as ImagePicker from 'expo-image-picker';
 import * as Const from 'src/helper/constant';
-import ApiManager from 'src/apiManager'
+import ApiManager from 'src/apiManager';
+import moment from 'moment';
+
 import SelectPhotoTypeModal from 'src/components/SelectPhotoTypeModal';
 const USER_ID = 50
 const EVENT_ID = "JxAg9zgiNQBHXH8Mk0m0";
@@ -25,8 +27,7 @@ class ChatComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            chats: [{ message: "Hi", userId: 50 },
-            { message: "Hello", userId: 0 }],
+            chats: [],
             currMessage: '',
             showSelectMediaModal: false
         }
@@ -34,7 +35,7 @@ class ChatComponent extends Component {
     componentDidMount= async () =>{
         //getMessages
         let messages = await ApiManager.getMessages(EVENT_ID)
-        console.log("compoentDidMount Chat messages", messages)
+        //console.log("compoentDidMount Chat messages", messages)
         this.setState({chats:messages})
     }
     pickImage = async () => {
@@ -57,6 +58,22 @@ class ChatComponent extends Component {
         let { chats } = this.state
         chats = [{ message: null, userId: chats.length % 2 == 0 ? 50 : 0, uri: photoUri, type: "photo" }, ...chats]
         this.setState({ chats })
+    }
+    sentMessage = async() => {
+        const TO_USER_ID = "EGDtaROorlajrAOb9dmv";
+        let createdDate = moment(new Date()).format("DD-MM-YYYY")
+        const { currMessage } = this.state;
+        const { event } = this.props;
+        let data = {
+            "text": currMessage,
+            "createdByUserId": USER_ID2,
+            "createdDateTime": createdDate,
+            "toUserId": TO_USER_ID
+        }
+        console.log({data})
+        let messages = await ApiManager.postMessage(event.id, data)
+        console.log("sentMessage Chat messages", messages)
+        //this.setState({chats:messages})
     }
     render() {
         const { showSelectMediaModal } = this.state;
@@ -116,14 +133,15 @@ class ChatComponent extends Component {
                                 />
                             </View>
                             <FontAwesome
-                                onPress={() => {
-                                    let { chats, currMessage } = this.state;
-                                    chats = [{
-                                        message: currMessage,
-                                        userId: currMessage.toString().length % 2 ? 0 : 50
-                                    }, ...chats]
-                                    this.setState({ chats, currMessage: '' })
-                                }}
+                                onPress={this.sentMessage}
+                                // onPress={() => {
+                                //     let { chats, currMessage } = this.state;
+                                //     chats = [{
+                                //         message: currMessage,
+                                //         userId: currMessage.toString().length % 2 ? 0 : 50
+                                //     }, ...chats]
+                                //     this.setState({ chats, currMessage: '' })
+                                // }}
                                 style={{ paddingHorizontal: 8 }}
                                 name="send" size={StyleConfig.countPixelRatio(30)} color={StyleConfig.COLORS.cyanBlue}
                             />

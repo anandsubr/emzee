@@ -7,7 +7,7 @@ export const KEY_EVENTS = `${BASE_URL}events`;
 
 export const AUTH_TOKEN = "AAAAJiUmgS4:APA91bH7iDImyEjmo3y5LTzasWLtRqpybQCwvUoUB_N-4G1Jfm0O6VwG7xHrog5k9BwG9BPWjjKC6MGsok49cziFcq9hXVEPP45Jj9aIy6g4IMn1q868U_JkRBW6dEAFHnbp0n0l_uDC";
 export const STATIC_USER = "OlEqIAk0LgAkBusiLOmv";
-export const STATIC_EVENT = "sMQth60zhE6cvhiqkbMU";
+export const STATIC_EVENT = "JxAg9zgiNQBHXH8Mk0m0";
 export const MASK_PHONE = "(999) 999-9999";
 //export const MASK_OTP = "9 9 9 9 9 9";
 export const MASK_OTP = "999999";

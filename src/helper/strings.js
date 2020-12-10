@@ -54,7 +54,10 @@ const strings = {
     "first_name": "First name",
     "last_name": "Last name",
     "registration" : "Registration",
-    "vendor_registration": "Vendor Registration"
+    "vendor_registration": "Vendor Registration",
+    "we_want_your_party_to_be_stressfree_and_painless_lets_add_everyone_who_is_going_to_serve_at_the_event_cateres_photographers_etc": "We want your party to be stressfree and painless. Let\'s add everyone who is going to serve at the event. Cateres, Photographers etc..",
+    "placeholder_service_provider": "Service Provider (e.g. Photographer)",
+    "placeholder_title_vendor":"Micah\'s Photography"
 
 
 
