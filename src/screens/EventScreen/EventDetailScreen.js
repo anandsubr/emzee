@@ -68,7 +68,7 @@ class EventDetailScreen extends Component {
   componentDidMount= async()=>{
     const { event, hostOfTheEvent } = this.props.route.params;
     //let response = await ApiManager.getEventDetails(event.id);
-    let participants = await ApiManager.getParticipants('')
+    let participants = await ApiManager.getParticipants(event.id)
     console.log({eventDetails:event, participants, id: event.id})
   }
 
