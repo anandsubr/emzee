@@ -70,11 +70,11 @@ const VendorComponent = (props) => {
                     contentContainerStyle={ styles.card}
                     keyExtractor={(item) => `vendor${item.id}`}
                     renderItem={({ item, index }) => <View style={{ flexDirection: 'row', borderBottomColor: StyleConfig.COLORS.headerBorderColor, borderBottomWidth: length == index+1 && !props.hostOfTheEvent ? 0 : 1, alignItems: 'center', paddingVertical: StyleConfig.countPixelRatio(8) }}>
-                        <FontAwesome name={item.status == 1 ? "check-circle" : item.status == -1 ? "times-circle" : "question-circle"}
+                        <FontAwesome name={item.type == 2 ? "check-circle" : item.status == -1 ? "times-circle" : "question-circle"}
                             size={StyleConfig.countPixelRatio(24)}
-                            color={item.status == 1 ? StyleConfig.COLORS.lightGreen : item.status == -1 ? StyleConfig.COLORS.lightRed : StyleConfig.COLORS.lightYellow} />
+                            color={item.type == 2 ? StyleConfig.COLORS.lightGreen : item.status == -1 ? StyleConfig.COLORS.lightRed : StyleConfig.COLORS.lightYellow} />
                         <View style={{ width: StyleConfig.countPixelRatio(6) }} />
-                        <Text style={styles.textH23Medium}>{item.name}</Text>
+                        <Text style={styles.textH23Medium}>{`${item.data.firstname} ${item.data.lastname}`}</Text>
                     </View>}
                     ListFooterComponent={() => {
 

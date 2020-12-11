@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "163832037678",
+    "firebase_url": "https://emzee-33423.firebaseio.com",
+    "project_id": "emzee-33423",
+    "storage_bucket": "emzee-33423.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163832037678:android:bbf46afe1ccd5f7d7ffabf",
+        "android_client_info": {
+          "package_name": "com.emzee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "163832037678-etlhumrqrljh9k5fk6hidpqimsvdl0sl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.emzee",
+            "certificate_hash": "1c30c1d5baceae25e02c449e9c696aa48bc4e66f"
+          }
+        },
+        {
+          "client_id": "163832037678-49maqe85glot3082gg948um37l8to15k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZLIy1ZD9nkgDWm2kmc4xs0AbaqcGYhN0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "163832037678-49maqe85glot3082gg948um37l8to15k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "163832037678-hid26uj6tdq21557ukksge83l5btcfdi.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.emzee"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

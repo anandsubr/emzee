@@ -30,12 +30,12 @@ import ApiManager from 'src/apiManager'
 const userId = 50;
 const initialLayout = { width: StyleConfig.width };
 
-const vendors = [
-  { "id": "vendors1", "name": "Micah\'s Photography", "status": 1 },
-  { "id": "vendors2", "name": "Jeremy\'s Catering", "status": 1 },
-  { "id": "vendors3", "name": "M20 Banquet", "status": -1 },
-  { "id": "vendors4", "name": "Rosy\'s Flowers", "status": 0 }
-]
+// const vendors = [
+//   { "id": "vendors1", "name": "Micah\'s Photography", "status": 1 },
+//   { "id": "vendors2", "name": "Jeremy\'s Catering", "status": 1 },
+//   { "id": "vendors3", "name": "M20 Banquet", "status": -1 },
+//   { "id": "vendors4", "name": "Rosy\'s Flowers", "status": 0 }
+// ]
 const routes = [
   { key: 'vendors', title: 'Vendors' },
   { key: 'guests', title: 'Guests' },
@@ -58,7 +58,9 @@ class EventDetailScreen extends Component {
       isAddNewVendor: false,
       event,
       hostOfTheEvent,
-      index: 0
+      index: 0,
+      vendors: [],
+      guests: []
     }
     setTimeout(() => {
       this.setState({ showNewEventCreate: false })
@@ -68,8 +70,13 @@ class EventDetailScreen extends Component {
   componentDidMount= async()=>{
     const { event, hostOfTheEvent } = this.props.route.params;
     //let response = await ApiManager.getEventDetails(event.id);
-    let participants = await ApiManager.getParticipants(event.id)
-    console.log({eventDetails:event, participants, id: event.id})
+    //let participants = await ApiManager.getParticipants(event.id)
+    
+    let participants = await ApiManager.getParticipants("JxAg9zgiNQBHXH8Mk0m0")
+    console.log({ eventDetails: event, participants, id: event.id })
+    let vendors = participants.filter((item) => item.type == Const.VENDOR)
+    let guests = participants.filter((item) => item.type != Const.VENDOR)
+    this.setState({vendors,guests})
   }
 
   onItemPress = (event) => {
@@ -107,14 +114,14 @@ class EventDetailScreen extends Component {
   };
   render() {
     const { isVendor } = this.props
-    const { hostOfTheEvent, isAddNewVendor, showNewEventCreate, event, index } = this.state;
+    const { hostOfTheEvent, isAddNewVendor, showNewEventCreate, event, index, vendors, guests } = this.state;
     const renderScene = this.props.isVendor ? SceneMap({
       info: () => <InfoComponent {...this.props} initial={isAddNewVendor} vendors={vendors} hostOfTheEvent={hostOfTheEvent} onSavePress={() => this.setState({ isAddNewVendor: false })} onAddNewPress={() => this.setState({ isAddNewVendor: true })} />,
       photos: () => <PhotosComponent {...this.props} hostOfTheEvent={hostOfTheEvent} />,
       chat: () => <ChatComponent {...this.props} event={event} hostOfTheEvent={hostOfTheEvent} />
     }) : SceneMap({
       vendors: () => <VendorComponent {...this.props} initial={isAddNewVendor} vendors={vendors} hostOfTheEvent={hostOfTheEvent} onSavePress={() => this.setState({ isAddNewVendor: false })} onAddNewPress={() => this.setState({ isAddNewVendor: true })} />,
-      guests: () => <GuestComponent {...this.props} hostOfTheEvent={hostOfTheEvent} />,
+      guests: () => <GuestComponent {...this.props} guests={ guests} hostOfTheEvent={hostOfTheEvent} />,
       photos: () => <PhotosComponent {...this.props} hostOfTheEvent={hostOfTheEvent} />,
       chat: () => <ChatComponent {...this.props} event={event} hostOfTheEvent={hostOfTheEvent} />
     });
