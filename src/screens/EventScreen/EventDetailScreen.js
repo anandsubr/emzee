@@ -67,16 +67,18 @@ class EventDetailScreen extends Component {
     },
       5000);
   }
-  componentDidMount= async()=>{
+  componentDidMount = async () => {
     const { event, hostOfTheEvent } = this.props.route.params;
     //let response = await ApiManager.getEventDetails(event.id);
     //let participants = await ApiManager.getParticipants(event.id)
-    
-    let participants = await ApiManager.getParticipants("JxAg9zgiNQBHXH8Mk0m0")
+
+    // let participants = await ApiManager.getParticipants("JxAg9zgiNQBHXH8Mk0m0")
+    let participants = await ApiManager.getParticipants(event.id)
+
     console.log({ eventDetails: event, participants, id: event.id })
     let vendors = participants.filter((item) => item.type == Const.VENDOR)
     let guests = participants.filter((item) => item.type != Const.VENDOR)
-    this.setState({vendors,guests})
+    this.setState({ vendors, guests })
   }
 
   onItemPress = (event) => {
@@ -115,17 +117,20 @@ class EventDetailScreen extends Component {
   render() {
     const { isVendor } = this.props
     const { hostOfTheEvent, isAddNewVendor, showNewEventCreate, event, index, vendors, guests } = this.state;
-    const renderScene = this.props.isVendor ? SceneMap({
-      info: () => <InfoComponent {...this.props} initial={isAddNewVendor} vendors={vendors} hostOfTheEvent={hostOfTheEvent} onSavePress={() => this.setState({ isAddNewVendor: false })} onAddNewPress={() => this.setState({ isAddNewVendor: true })} />,
-      photos: () => <PhotosComponent {...this.props} hostOfTheEvent={hostOfTheEvent} />,
-      chat: () => <ChatComponent {...this.props} event={event} hostOfTheEvent={hostOfTheEvent} />
-    }) : SceneMap({
-      vendors: () => <VendorComponent {...this.props} initial={isAddNewVendor} vendors={vendors} hostOfTheEvent={hostOfTheEvent} onSavePress={() => this.setState({ isAddNewVendor: false })} onAddNewPress={() => this.setState({ isAddNewVendor: true })} />,
-      guests: () => <GuestComponent {...this.props} guests={ guests} hostOfTheEvent={hostOfTheEvent} />,
-      photos: () => <PhotosComponent {...this.props} hostOfTheEvent={hostOfTheEvent} />,
-      chat: () => <ChatComponent {...this.props} event={event} hostOfTheEvent={hostOfTheEvent} />
-    });
-    console.log({ hostOfTheEvent,event })
+    const renderScene =
+      this.props.isVendor
+        ? SceneMap({
+          info: () => <InfoComponent {...this.props} initial={isAddNewVendor} vendors={vendors} hostOfTheEvent={hostOfTheEvent} onSavePress={() => this.setState({ isAddNewVendor: false })} onAddNewPress={() => this.setState({ isAddNewVendor: true })} />,
+          photos: () => <PhotosComponent {...this.props} hostOfTheEvent={hostOfTheEvent} />,
+          chat: () => <ChatComponent {...this.props} event={event} hostOfTheEvent={hostOfTheEvent} />
+        })
+        : SceneMap({
+          vendors: () => <VendorComponent {...this.props} initial={isAddNewVendor} vendors={vendors} hostOfTheEvent={hostOfTheEvent} onSavePress={() => this.setState({ isAddNewVendor: false })} onAddNewPress={() => this.setState({ isAddNewVendor: true })} />,
+          guests: () => <GuestComponent {...this.props} guests={guests} hostOfTheEvent={hostOfTheEvent} />,
+          photos: () => <PhotosComponent {...this.props} hostOfTheEvent={hostOfTheEvent} />,
+          chat: () => <ChatComponent {...this.props} event={event} hostOfTheEvent={hostOfTheEvent} />
+        });
+    console.log({ hostOfTheEvent, event })
     return (
       <>
         <StatusBar barStyle="dark-content" />

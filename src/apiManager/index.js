@@ -1,215 +1,267 @@
 import React from 'react'
 import {
-    AUTH_TOKEN,
-    KEY_POST_LOGIN,
-    KEY_USERS,
-    KEY_EVENTS
+  AUTH_TOKEN,
+  KEY_POST_LOGIN,
+  KEY_USERS,
+  KEY_EVENTS,
+  KEY_BY_PHONE
 } from 'src/helper/constant'
 
 
 const ApiManager = {
-    postRegister: async (data) => {
-        return fetch(KEY_USERS, {
-            method: "POST",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-                "auth": AUTH_TOKEN
-            },
-            body: JSON.stringify(data)
-        }).then((response) => {
-            return response.json()
-        }, function (error) {
-            console.log('error', error)
-        }).catch((error) => {
-            console.log('error', error)
-        });
-    },
-    postUpdateProfile: async (userId, data) => {
-        return fetch(`${KEY_USERS}/${userId}`, {
-            method: "PUT",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        }).then((response) => {
-            return response.json()
-        }, function (error) {
-            console.log('error', error)
-        }).catch((error) => {
-            console.log('error', error)
-        });
-    },
-    getUserProfile: async (userId) => {
-        console.log(`API url -> ${KEY_USERS}/${userId}`)
-        return fetch(`${KEY_USERS}/${userId}`, {
-            method: "GET",
-            headers: {
-                "Accept": "application/json"
-            }
-        }).then((response) => {
-            return response.json()
-        }, function (error) {
-            console.log('error', error)
-        }).catch((error) => {
-            console.log('error', error)
-        });
-    },
+  postRegister: async (data) => {
+    return fetch(KEY_USERS, {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "auth": AUTH_TOKEN
+      },
+      body: JSON.stringify(data)
+    }).then((response) => {
+      return response.json()
+    }, function (error) {
+      console.log('error', error)
+    }).catch((error) => {
+      console.log('error', error)
+    });
+  },
+  postUpdateProfile: async (userId, data) => {
+    return fetch(`${KEY_USERS}/${userId}`, {
+      method: "PUT",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    }).then((response) => {
+      return response.json()
+    }, function (error) {
+      console.log('error', error)
+    }).catch((error) => {
+      console.log('error', error)
+    });
+  },
+  getUserProfile: async (userId) => {
+    console.log(`API url -> ${KEY_USERS}/${userId}`)
+    return fetch(`${KEY_USERS}/${userId}`, {
+      method: "GET",
+      headers: {
+        "Accept": "application/json"
+      }
+    }).then((response) => {
+      return response.json()
+    }, function (error) {
+      console.log('error', error)
+    }).catch((error) => {
+      console.log('error', error)
+    });
+  },
+  getUserProfileByPhone: async (phone) => {
+    console.log(`API url -> ${KEY_BY_PHONE}/${phone}`)
+    return fetch(`${KEY_BY_PHONE}/${phone}`, {
+      method: "GET",
+      headers: {
+        "Accept": "application/json"
+      }
+    }).then((response) => {
+      return response.json()
+    }, function (error) {
+      console.log('error', error)
+    }).catch((error) => {
+      console.log('error', error)
+    });
+  },
 
-    //---------------EVENTS------------------
+  //---------------EVENTS------------------
 
-    postEvent: async (data) => {
-        return fetch(KEY_EVENTS, {
-            method: "POST",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-                "auth": AUTH_TOKEN
-            },
-            body: JSON.stringify(data)
-        }).then((response) => {
-            return response.json()
-        }, function (error) {
-            console.log('error', error)
-        }).catch((error) => {
-            console.log('error', error)
-        });
-    },
-    postUpdateEvent: async (eventId, data) => {
-        return fetch(`${KEY_EVENTS}/${eventId}`, {
-            method: "PUT",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        }).then((response) => {
-            return response.json()
-        }, function (error) {
-            console.log('error', error)
-        }).catch((error) => {
-            console.log('error', error)
-        });
-    },
-    getEventDetails: async (eventId) => {
-        return fetch(`${KEY_EVENTS}/${eventId}`, {
-            method: "GET",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            }
-        }).then((response) => {
-            return response.json()
-        }, function (error) {
-            console.log('error', error)
-        }).catch((error) => {
-            console.log('error', error)
-        });
-    },
-    getAllEvents: async () => {
-        return fetch(KEY_EVENTS, {
-            method: "GET",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            }
-        }).then((response) => {
-            return response.json()
-        }, function (error) {
-            console.log('error', error)
-        }).catch((error) => {
-            console.log('error', error)
-        });
-    },
-    getServiceProvider: async (eventId) => {
-        return fetch(`${KEY_EVENTS}${eventId}/serviceproviders`, {
-            method: "GET",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            }
-        }).then((response) => {
-            return response.json()
-        }, function (error) {
-            console.log('error', error)
-        }).catch((error) => {
-            console.log('error', error)
-        });
-    },
+  postEvent: async (data) => {
+    return fetch(KEY_EVENTS, {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "auth": AUTH_TOKEN
+      },
+      body: JSON.stringify(data)
+    }).then((response) => {
+      return response.json()
+    }, function (error) {
+      console.log('error', error)
+    }).catch((error) => {
+      console.log('error', error)
+    });
+  },
+  postUpdateEvent: async (eventId, data) => {
+    return fetch(`${KEY_EVENTS}/${eventId}`, {
+      method: "PUT",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    }).then((response) => {
+      return response.json()
+    }, function (error) {
+      console.log('error', error)
+    }).catch((error) => {
+      console.log('error', error)
+    });
+  },
+  getEventDetails: async (eventId) => {
+    return fetch(`${KEY_EVENTS}/${eventId}`, {
+      method: "GET",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      }
+    }).then((response) => {
+      return response.json()
+    }, function (error) {
+      console.log('error', error)
+    }).catch((error) => {
+      console.log('error', error)
+    });
+  },
+  getAllEvents: async () => {
+    return fetch(KEY_EVENTS, {
+      method: "GET",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      }
+    }).then((response) => {
+      return response.json()
+    }, function (error) {
+      console.log('error', error)
+    }).catch((error) => {
+      console.log('error', error)
+    });
+  },
+  getServiceProvider: async (eventId) => {
+    return fetch(`${KEY_EVENTS}${eventId}/serviceproviders`, {
+      method: "GET",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      }
+    }).then((response) => {
+      return response.json()
+    }, function (error) {
+      console.log('error', error)
+    }).catch((error) => {
+      console.log('error', error)
+    });
+  },
 
 
 
-    postLogin: async (email, password) => {
+  postLogin: async (email, password) => {
 
-        return fetch(KEY_POST_LOGIN, {
-            method: "POST",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                email, password
-            })
-        }).then((response) => {
-            return response.json()
-        }, function (error) {
-            console.log('error', error)
-        }).catch((error) => {
-            console.log('error', error)
-        });
-    },
-    generateOtp: async (phoneNumber) => {
-        const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
-        console.log({ confirmation })
-    },
-    getMessages: async (eventId) => {
-        return fetch(`${KEY_EVENTS}/${eventId}/messages`, {
-            method: "GET",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            }
-        }).then((response) => {
-            return response.json()
-        }, function (error) {
-            console.log('error', error)
-        }).catch((error) => {
-            console.log('error', error)
-        });
-    },
-    postMessage: async (eventId, data) => {
-        return fetch(`${KEY_EVENTS}/${eventId}/messages`, {
-            method: "POST",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-                "auth": AUTH_TOKEN
-            },
-            body: JSON.stringify(data)
-        }).then((response) => {
-            return response.json()
-        }, function (error) {
-            console.log('error', error)
-        }).catch((error) => {
-            console.log('error', error)
-        });
-    },
-    getParticipants: async (eventId) => {
-        console.log(`url->  ${KEY_EVENTS}/${eventId}/participants`)
-        return fetch(`${KEY_EVENTS}/${eventId}/participants`, {
-            method: "GET",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            }
-        }).then((response) => {
-            return response.json()
-        }, function (error) {
-            console.log('error', error)
-        }).catch((error) => {
-            console.log('error', error)
-        });
-    },
+    return fetch(KEY_POST_LOGIN, {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email, password
+      })
+    }).then((response) => {
+      return response.json()
+    }, function (error) {
+      console.log('error', error)
+    }).catch((error) => {
+      console.log('error', error)
+    });
+  },
+  generateOtp: async (phoneNumber) => {
+    const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
+    console.log({ confirmation })
+  },
+  getMessages: async (eventId) => {
+    return fetch(`${KEY_EVENTS}/${eventId}/messages`, {
+      method: "GET",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      }
+    }).then((response) => {
+      return response.json()
+    }, function (error) {
+      console.log('error', error)
+    }).catch((error) => {
+      console.log('error', error)
+    });
+  },
+  postMessage: async (eventId, data) => {
+    return fetch(`${KEY_EVENTS}/${eventId}/messages`, {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "auth": AUTH_TOKEN
+      },
+      body: JSON.stringify(data)
+    }).then((response) => {
+      return response.json()
+    }, function (error) {
+      console.log('error', error)
+    }).catch((error) => {
+      console.log('error', error)
+    });
+  },
+  getParticipants: async (eventId) => {
+    console.log(`url->  ${KEY_EVENTS}/${eventId}/participants`)
+    return fetch(`${KEY_EVENTS}/${eventId}/participants`, {
+      method: "GET",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      }
+    }).then((response) => {
+      return response.json()
+    }, function (error) {
+      console.log('error', error)
+    }).catch((error) => {
+      console.log('error', error)
+    });
+  },
+
+  // EVENT FILES
+  postCreateFile: async (eventId, data) => {
+    return fetch(`${KEY_EVENTS}/${eventId}/files`, {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "auth": AUTH_TOKEN
+      },
+      body: JSON.stringify(data)
+    }).then((response) => {
+      return response.json()
+    }, function (error) {
+      console.log('error', error)
+    }).catch((error) => {
+      console.log('error', error)
+    });
+  },
+
+  getFiles: async (eventId) => {
+    console.log(`url->  ${KEY_EVENTS}/${eventId}/files`)
+    return fetch(`${KEY_EVENTS}/${eventId}/files`, {
+      method: "GET",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      }
+    }).then((response) => {
+      return response.json()
+    }, function (error) {
+      console.log('error', error)
+    }).catch((error) => {
+      console.log('error', error)
+    });
+  },
 }
 module.exports = ApiManager;

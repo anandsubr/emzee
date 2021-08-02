@@ -25,102 +25,6 @@ import moment from 'moment';
 import strings from 'src/helper/strings';
 const userId = 50;
 import ApiManager from 'src/apiManager'
-const DUMMY_DATA = [
-  {
-    "id": 1001,
-    "hostUserId": 50,
-    "eventName": "Dev's Birthday",
-    "date": "2020-11-02",
-    "location": "Honest Banquet",
-    "address": "700 5th Avenue, New York",
-    "eventType": "Birthday",
-    "guest": {
-      "confirmed": 22,
-      "cancelled": 8,
-      "tentative": 12
-    }
-  },
-  {
-    "id": 1002,
-    "hostUserId": 49,
-    "eventName": "James & Eline Anniversary",
-    "date": "2020-11-04",
-    "location": "Mango Hotel",
-    "address": "133, West 55th street. New York",
-    "eventType": "Anniversary",
-    "guest": null,
-    "myRes": 1 // accepted
-  },
-  {
-    "id": 1003,
-    "hostUserId": 49,
-    "eventName": "Edan & Robin Anniversary",
-    "date": "2020-11-05",
-    "location": "Mango Hotel",
-    "address": "133, West 55th street. New York",
-    "eventType": "Anniversary",
-    "guest": null,
-    "myRes": -1 // rejected
-  },
-  {
-    "id": 1004,
-    "hostUserId": 49,
-    "eventName": "Amelia's Birthday",
-    "date": "2020-11-05",
-    "location": "7Star Hotel",
-    "address": "15, West 24th street. New York",
-    "eventType": "Birthday",
-    "guest": null,
-    "myRes": 0 // tentative
-  },
-  {
-    "id": 1005,
-    "hostUserId": 50,
-    "eventName": "Dev's Birthday",
-    "date": "2020-11-11",
-    "location": "Honest Banquet",
-    "address": "700 5th Avenue, New York",
-    "eventType": "Birthday",
-    "guest": {
-      "confirmed": 22,
-      "cancelled": 8,
-      "tentative": 12
-    }
-  },
-  {
-    "id": 1006,
-    "hostUserId": 49,
-    "eventName": "James & Eline Anniversary",
-    "date": "2020-11-09",
-    "location": "Mango Hotel",
-    "address": "133, West 55th street. New York",
-    "eventType": "Anniversary",
-    "guest": null,
-    "myRes": 1 // accepted
-  },
-  {
-    "id": 1007,
-    "hostUserId": 49,
-    "eventName": "Edan & Robin Anniversary",
-    "date": "2020-11-08",
-    "location": "Mango Hotel",
-    "address": "133, West 55th street. New York",
-    "eventType": "Anniversary",
-    "guest": null,
-    "myRes": -1 // rejected
-  },
-  {
-    "id": 1008,
-    "hostUserId": 49,
-    "eventName": "Amelia's Birthday",
-    "date": "2020-11-07",
-    "location": "7Star Hotel",
-    "address": "15, West 24th street. New York",
-    "eventType": "Birthday",
-    "guest": null,
-    "myRes": 0 // tentative
-  }
-]
 
 class EventScreen extends Component {
   state = {
@@ -132,33 +36,19 @@ class EventScreen extends Component {
     calendarData: {},
     showAddEvent: false
   }
-  constructor(props) {
-    super(props);
-    // this.setState({ showWelcome: true })
-    // setTimeout(() => {
-    //   this.setState({ showWelcome: false })
-    // },
-    //   5000);
-  }
+
   componentDidMount = async () => {
-    // this.props.loader(true);
-    // setTimeout(()=>{
-    //   this.setState({data:DUMMY_DATA})
-    //   this.props.loader(false)
-    // }, 2000);
-
-    this.getInitialData();
-
+    this.getInitialData()
   }
   getInitialData = async () => {
-    let response = await ApiManager.getAllEvents();
+    let response = await ApiManager.getAllEvents()
     response = response.map((item) => {
       let start = item.data.startdate.split("-")
       let startdate = `${start[2]}-${start[1]}-${start[0]}`
       return { ...item.data, "id": item.id, startdate }
     });
     console.log(response)
-    let newData = {};
+    let newData = {}
     for (let ind in response) {
       if (newData.hasOwnProperty(response[ind].startdate)) {
         newData[response[ind].startdate].data.push(response[ind])
@@ -184,13 +74,19 @@ class EventScreen extends Component {
   onAddPress = () => {
     this.setState({ data: [] })
   }
+
+  onPressHeaderBtn = (data) => {
+    alert('Header button pressed')
+  }
+
   onItemPress = (event) => {
     if (event == null) {
       this.setState({ showAddEvent: true })
     } else if (event.hostUserId == userId) {
       this.props.navigation.navigate(Const.NK_EVENT_DETAILS, { event, hostOfTheEvent: true })
     } else {
-      this.props.navigation.navigate(Const.NK_EVENT_DETAILS, { event, hostOfTheEvent: false })
+      // NEED TO CHANGE hostOfTheEvent to false
+      this.props.navigation.navigate(Const.NK_EVENT_DETAILS, { event, hostOfTheEvent: true })
     }
   }
   onDayPress = ({ dateString }) => {
@@ -218,7 +114,7 @@ class EventScreen extends Component {
             <TouchableOpacity
               onPress={() => this.setState({ isCalendarView: !isCalendarView })}
               style={styles.backWrap}>
-              <FontAwesome name={isCalendarView ? Const.IC_EVENT_LIST : Const.IC_EVENT_CALENDAR} color={data.length == 0 ? StyleConfig.COLORS.transparent : '#333333dd'} size={StyleConfig.countPixelRatio(24)} />
+              <FontAwesome name={isCalendarView ? Const.IC_EVENT_LIST : Const.IC_EVENT_CALENDAR} color={data.length == 0 ? StyleConfig.COLORS.transparent : !showAddEvent ? '#333333dd' : StyleConfig.COLORS.transparent} size={StyleConfig.countPixelRatio(24)} />
             </TouchableOpacity>
           </View>
 
@@ -255,8 +151,8 @@ class EventScreen extends Component {
               data={data}
               extraData={this.state}
               keyExtractor={(item, index) => item.id.toString()}
-              renderItem={({ item, index }) => <EventListItem {...this.props} onPress={() => this.onItemPress(item)} event={item} isHostedByMe={item.hostUserId == userId} />}
-              ListFooterComponent={() => <EventListItem {...this.props} onPress={() => this.onItemPress(null)} />}
+              renderItem={({ item, index }) => <EventListItem {...this.props} onPress={() => this.onItemPress(item)} onPressHeaderBtn={() => this.onPressHeaderBtn()} event={item} isHostedByMe={item.hostUserId == userId} />}
+              ListFooterComponent={() => <EventListItem {...this.props} onPress={() => this.onItemPress(null)} onPressHeaderBtn={() => this.onPressHeaderBtn()} />}
             />
           </View>}
           {!isCalendarView && !showAddEvent && <ScrollView
@@ -265,8 +161,8 @@ class EventScreen extends Component {
               data={data}
               extraData={this.state}
               keyExtractor={(item, index) => `calender${item.id}`}
-              renderItem={({ item, index }) => <EventListItem {...this.props} onPress={() => this.onItemPress(item)} event={item} isHostedByMe={item.hostUserId == userId} />}
-              ListFooterComponent={() => <EventListItem {...this.props} onPress={() => this.onItemPress(null)} />}
+              renderItem={({ item, index }) => <EventListItem {...this.props} onPress={() => this.onItemPress(item)} event={item} onPressHeaderBtn={() => this.onPressHeaderBtn()} isHostedByMe={item.hostUserId == userId} />}
+              ListFooterComponent={() => <EventListItem {...this.props} onPress={() => this.onItemPress(null)} onPressHeaderBtn={() => this.onPressHeaderBtn()} />}
             />
             }
             {showWelcome && <View style={[styles.modalContainer, { position: 'absolute', }]}>

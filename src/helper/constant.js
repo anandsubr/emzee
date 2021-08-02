@@ -2,6 +2,7 @@ export const BASE_URL = `https://us-central1-emzee-33423.cloudfunctions.net/api/
 export const KEY_POST_LOGIN = `${BASE_URL}login`;
 export const KEY_USERS = `${BASE_URL}users`;
 export const KEY_EVENTS = `${BASE_URL}events`;
+export const KEY_BY_PHONE = `${BASE_URL}userbyphone`;
 
 
 
@@ -18,6 +19,9 @@ export const VENDOR = 2;
 export const USER = 1;
 export const SS_IS_LOGIN = "IS_LOGIN";
 export const SS_IS_VENDOR = "IS_VENDOR";
+
+// Async Storage Keys
+export const LOGGED_IN_USER_DETAILS = 'LOGGED_IN_USER_DETAILS'
 
 export const FIREBASE_CONFIGS = {
     apiKey: "AIzaSyCTkFxjPFVUEDw73XS75GDFEVIeiXLWrJU",

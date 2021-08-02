@@ -1,47 +1,26 @@
-
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
-  SafeAreaView,
-  StyleSheet,
-  FlatList,
-  View,
-  Text,
-  Image,
-  TextInput, TouchableOpacity,
-  StatusBar,
-} from 'react-native';
+  SafeAreaView, View, Text, TouchableOpacity,
+  StatusBar
+} from 'react-native'
 
-import {
-  Colors,
-} from 'react-native/Libraries/NewAppScreen';
-import StyleConfig from 'src/helper/StyleConfig';
+import StyleConfig from 'src/helper/StyleConfig'
 
-import AppImages from 'src/assets/images';
-import { Button } from 'src/components/common/Button';
-import styles from 'src/helper/styles';
-import * as Const from 'src/helper/constant';
-import { FontAwesome } from '@expo/vector-icons';
+import styles from 'src/helper/styles'
+import * as Const from 'src/helper/constant'
+import { FontAwesome } from '@expo/vector-icons'
 class SettingsScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [
-        {
-          "id": 1,
-          "name": "childhood",
-          "contacts": [{}, {}]
-        },
-        {
-          "id": 2,
-          "name": "Prompt Group",
-          "contacts": [{}, {}]
-        }
-      ]
+
     }
   }
+
   onProfile = () => {
     this.props.navigation.navigate(Const.NK_PROFILE)
   }
+
   render() {
     return (
       <>
@@ -65,7 +44,7 @@ class SettingsScreen extends Component {
           </View>
         </SafeAreaView>
       </>
-    );
+    )
   }
 }
 export default SettingsScreen;

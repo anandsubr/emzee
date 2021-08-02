@@ -1,28 +1,22 @@
 
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
-  SafeAreaView,
-  ScrollView,
-  View,
-  Text,
-  Image,
-  TextInput,
-  StatusBar,
-  TouchableOpacity
-} from 'react-native';
+  SafeAreaView, ScrollView, View, Text,
+  Image, StatusBar, TouchableOpacity
+} from 'react-native'
 
-import StyleConfig from 'src/helper/StyleConfig';
-import { FontAwesome } from '@expo/vector-icons';
-import AppImages from 'src/assets/images';
-import { Button } from 'src/components/common/Button';
+import StyleConfig from 'src/helper/StyleConfig'
+import { FontAwesome } from '@expo/vector-icons'
+import AppImages from 'src/assets/images'
+import { Button } from 'src/components/common/Button'
 import { TextInputMask } from 'react-native-masked-text'
-import styles from 'src/helper/styles';
-import strings from 'src/helper/strings';
-import * as Const from 'src/helper/constant';
-import withLoader from 'src/redux/actionCreator/withLoader';
-import firebase from 'src/helper/firebaseConfig';
-import { FirebaseRecaptchaVerifierModal } from 'expo-firebase-recaptcha';
-import withVendor from 'src/redux/actionCreator/withVendor';
+import styles from 'src/helper/styles'
+import strings from 'src/helper/strings'
+import * as Const from 'src/helper/constant'
+import withLoader from 'src/redux/actionCreator/withLoader'
+import firebase from 'src/helper/firebaseConfig'
+import { FirebaseRecaptchaVerifierModal } from 'expo-firebase-recaptcha'
+import withVendor from 'src/redux/actionCreator/withVendor'
 firebase.auth().isAppVerificationDisabledForTesting = true
 
 const LoginScreen = ({ navigation, ...props }) => {
@@ -90,7 +84,7 @@ const LoginScreen = ({ navigation, ...props }) => {
                     `+91${phoneNumber}`,
                     recaptchaVerifier.current
                   );
-                  navigation.navigate(Const.NK_OTP_VERIFICATION, { verificationId })
+                  navigation.navigate(Const.NK_OTP_VERIFICATION, { verificationId, phoneNumber })
                   // setVerificationId(verificationId);
                   // showMessage({
                   //   text: "Verification code has been sent to your phone.",

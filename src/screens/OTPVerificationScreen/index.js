@@ -26,6 +26,8 @@ import { TextInputMask } from 'react-native-masked-text'
 import firebase from 'src/helper/firebaseConfig';
 import { FirebaseRecaptchaVerifierModal } from 'expo-firebase-recaptcha';
 import withVendor from 'src/redux/actionCreator/withVendor';
+import ApiManager from 'src/apiManager'
+import AsyncStorage from '@react-native-community/async-storage'
 
 import * as SecureStore from 'expo-secure-store';
 const OTPVerificationScreen = ({ route, navigation, ...props }) => {
@@ -85,9 +87,9 @@ const OTPVerificationScreen = ({ route, navigation, ...props }) => {
                     verificationCode
                   );
                   console.log("step 2", credential)
+
                   let res = await firebase.auth().signInWithCredential(credential);
                   console.log("step 3", res)
-
                   if (props.isVendor) {
                     navigation.navigate(Const.NK_VENDOR_REGISTER, {})
                   } else {
@@ -95,6 +97,17 @@ const OTPVerificationScreen = ({ route, navigation, ...props }) => {
 
                     navigation.dispatch(CommonActions.reset({ index: 0, routes: [{ name: Const.NK_DASHBOARD }] }))
                   }
+                  ApiManager.getUserProfileByPhone(route.params.phoneNumber)
+                    .then((res) => {
+                      debugger
+                      AsyncStorage.setItem(Const.LOGGED_IN_USER_DETAILS, res)
+                        .then(async () => {
+                          debugger
+                        })
+                    })
+                    .catch((error) => {
+                    })
+
                 } catch (err) {
                   showMessage({ text: `Error: ${err.message}`, color: "red" });
                 }
